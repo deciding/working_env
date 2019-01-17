@@ -98,4 +98,5 @@ GIT_PROMPT_ONLY_IN_REPO=1
 source ~/.bash-git-prompt/gitprompt.sh
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source ~/.local/bin/virtualenvwrapper.sh
+#source ~/.local/bin/virtualenvwrapper.sh
+. /usr/local/bin/virtualenvwrapper.sh
