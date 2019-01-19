@@ -34,6 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-python/python-syntax'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,9 +53,14 @@ filetype plugin indent on    " required
 
 let Tlist_Use_Right_Window   = 1
 let g:python_highlight_all = 1
+let g:jedi#completions_command = "<C-N>"
+let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_linters_ignore = {'python': ['pylint']}
+let g:ale_fixers = {'python': ['autopep8']}
+let g:ale_fix_on_save = 1
 
 au VimEnter *  NERDTree
-au VimEnter *  TlistOpen
+"au VimEnter *  TlistOpen
 
 set exrc
 set secure

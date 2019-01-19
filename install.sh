@@ -9,10 +9,21 @@ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
 sudo update-alternatives --config python3
 
+sudo add-apt-repository ppa:jonathonf/vim
+
+sudo apt update
+
+sudo apt install vim
+
 sudo apt-get install python3-pip
 sudo pip3 install virtualenv
 mkdir ~/.virtualenvs
 sudo pip3 install virtualenvwrapper
+
+pip3 install flake8
+
+#pip mismatch version
+#curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3
 
 # install Vundle and install all the specified plugins
 echo "Installing Vundle" 
@@ -34,6 +45,6 @@ git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCom
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
 #install ConqueGDB
 
-cp .bashtc ~/.bashrc
+cp .bashrc ~/.bashrc
 source ~/.bashrc
 
