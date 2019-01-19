@@ -21,6 +21,7 @@ mkdir ~/.virtualenvs
 sudo pip3 install virtualenvwrapper
 
 pip3 install flake8
+pip3 install autopep8
 
 #pip mismatch version
 #curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3
