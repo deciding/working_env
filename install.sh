@@ -1,4 +1,7 @@
 #!/bin/bash
+sudo apt-get install git
+sudo apt-get install wget
+sudo apt-get install unzip
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 
 sudo apt-get install -y software-properties-common
@@ -30,7 +33,6 @@ pip3 install autopep8
 echo "Installing Vundle" 
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 cp .vimrc ~/.vimrc
-vim +PluginInstall +qall
 #install ctags
 echo "Installing ctags"
 sudo apt-get install exuberant-ctags
@@ -44,7 +46,10 @@ sudo apt-get install build-essential cmake
 sudo apt-get install python-dev python3-dev
 git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
+(cd $HOME/.vim/bundle/jedi-vim/ && git submodule update --init)
 #install ConqueGDB
+
+vim +PluginInstall +qall
 
 cp .bashrc ~/.bashrc
 source ~/.bashrc

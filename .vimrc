@@ -34,6 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-python/python-syntax'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
@@ -53,7 +54,9 @@ filetype plugin indent on    " required
 
 let Tlist_Use_Right_Window   = 1
 let g:python_highlight_all = 1
-let g:jedi#completions_command = "<C-N>"
+" let g:jedi#completions_command = "<C-N>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0
 let g:ale_linters = {'python': ['flake8', 'pylint']}
 let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_fixers = {'python': ['autopep8']}
