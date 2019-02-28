@@ -65,6 +65,8 @@ let g:ale_fix_on_save = 1
 au VimEnter *  NERDTree
 "au VimEnter *  TlistOpen
 
+nmap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
+
 set exrc
 set secure
 filetype plugin indent on
@@ -77,3 +79,7 @@ set expandtab
 set number
 filetype indent on
 set autoindent
+
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set termencoding=utf-8
