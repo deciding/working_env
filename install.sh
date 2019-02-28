@@ -6,6 +6,9 @@ git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt -
 
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:jonathonf/python-3.6
+#if above show apt_pkg not found, use below commands
+#cd /usr/lib/python3/dist-packages
+#cp apt_pkg.cpython-35m-x86_64-linux-gnu.so apt_pkg.so
 sudo apt-get update
 sudo apt-get install python3.6
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
