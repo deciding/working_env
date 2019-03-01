@@ -52,6 +52,12 @@ git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCom
 (cd $HOME/.vim/bundle/jedi-vim/ && git submodule update --init)
 #install ConqueGDB
 
+apt-get install python3-pyaudio
+apt-get install portaudio19-dev
+apt-get install locales
+locale-gen en_US.UTF-8
+update-locale
+
 vim +PluginInstall +qall
 
 cp .bashrc ~/.bashrc

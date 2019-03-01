@@ -102,3 +102,6 @@ export PROJECT_HOME=$HOME/Devel
 . /usr/local/bin/virtualenvwrapper.sh
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONIOENCODING=UTF-8
+export LANG="en_US.utf8"
+export LC_ALL="en_US.utf8"
+export LC_CTYPE="en_US.utf8"
