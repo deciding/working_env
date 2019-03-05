@@ -2,6 +2,7 @@
 sudo apt-get install git
 sudo apt-get install wget
 sudo apt-get install unzip
+sudo apt-get install xdg-utils 
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 
 sudo apt-get install -y software-properties-common
@@ -20,6 +21,7 @@ sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update
 
 sudo apt install vim
+sudo apt-get install pulseaudio
 
 sudo apt-get install python3-pip
 sudo pip3 install virtualenv
