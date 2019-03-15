@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get update
 sudo apt-get install git
 sudo apt-get install wget
 sudo apt-get install unzip
@@ -12,21 +13,26 @@ sudo add-apt-repository ppa:jonathonf/python-3.6
 #cp apt_pkg.cpython-35m-x86_64-linux-gnu.so apt_pkg.so
 sudo apt-get update
 sudo apt-get install python3.6
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
-sudo update-alternatives --config python3
+#sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
+#sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
+#sudo update-alternatives --config python3
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
 
-sudo add-apt-repository ppa:jonathonf/vim
+#sudo add-apt-repository ppa:jonathonf/vim
+#sudo apt update
+#sudo apt install vim
 
-sudo apt update
 
-sudo apt install vim
-sudo apt-get install pulseaudio
+sudo apt-get install locales
+sudo locale-gen en_US.UTF-8
+sudo update-locale
 
 sudo apt-get install python3-pip
-sudo pip3 install virtualenv
+python3 -m pip install --user --upgrade pip
+pip3 install virtualenv
 mkdir ~/.virtualenvs
-sudo pip3 install virtualenvwrapper
+pip3 install virtualenvwrapper
 
 pip3 install flake8
 pip3 install autopep8
@@ -54,11 +60,9 @@ git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCom
 (cd $HOME/.vim/bundle/jedi-vim/ && git submodule update --init)
 #install ConqueGDB
 
-apt-get install python3-pyaudio
-apt-get install portaudio19-dev
-apt-get install locales
-locale-gen en_US.UTF-8
-update-locale
+sudo apt-get install python3-pyaudio
+sudo apt-get install pulseaudio
+sudo apt-get install portaudio19-dev
 
 vim +PluginInstall +qall
 
