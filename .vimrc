@@ -31,11 +31,17 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'vim-scripts/Conque-GDB'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-python/python-syntax'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-Plugin 'w0rp/ale'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'vim-python/python-syntax'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'ervandew/supertab'
+"Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,15 +58,16 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+let g:ycm_autoclose_preview_window_after_completion=1
 let Tlist_Use_Right_Window   = 1
 let g:python_highlight_all = 1
 " let g:jedi#completions_command = "<C-N>"
-let g:SuperTabDefaultCompletionType = "context"
-let g:jedi#popup_on_dot = 0
-let g:ale_linters = {'python': ['flake8', 'pylint']}
-let g:ale_linters_ignore = {'python': ['pylint']}
-let g:ale_fixers = {'python': ['autopep8']}
-let g:ale_fix_on_save = 1
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:jedi#popup_on_dot = 0
+"let g:ale_linters = {'python': ['flake8', 'pylint']}
+"let g:ale_linters_ignore = {'python': ['pylint']}
+"let g:ale_fixers = {'python': ['autopep8']}
+"let g:ale_fix_on_save = 1
 
 au VimEnter *  NERDTree
 "au VimEnter *  TlistOpen
@@ -78,11 +85,41 @@ function TabToggle()
   endif
 endfunction
 
-nmap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
-nmap <F9> mz:execute TabToggle()<CR>'z
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"python with virtualenv support
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
+nnoremap <F9> mz:execute TabToggle()<CR>'z
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" Enable folding with the spacebar
+nnoremap <space> za
 
 set exrc
 set secure
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
 filetype plugin indent on
 syntax on
 
