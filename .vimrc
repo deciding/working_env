@@ -38,6 +38,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'szymonmaszke/vimpyter' "Vundle
 "Plugin 'vim-python/python-syntax'
 "Plugin 'davidhalter/jedi-vim'
 "Plugin 'ervandew/supertab'
@@ -61,6 +62,11 @@ filetype plugin indent on    " required
 let g:ycm_autoclose_preview_window_after_completion=1
 let Tlist_Use_Right_Window   = 1
 let g:python_highlight_all = 1
+" let g:syntastic_quiet_messages = { "type": "style" }
+let g:syntastic_quiet_messages = {
+        \ "!level":  "errors",
+        \ "type":    "style"}
+
 " let g:jedi#completions_command = "<C-N>"
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:jedi#popup_on_dot = 0
@@ -101,16 +107,18 @@ import sys
 if 'VIRTUAL_ENV' in os.environ:
   project_base_dir = os.environ['VIRTUAL_ENV']
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
+  exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 EOF
+" execfile(activate_this, dict(__file__=activate_this))
 
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
 " Enable folding with the spacebar
 nnoremap <space> za
 
