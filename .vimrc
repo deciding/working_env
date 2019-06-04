@@ -38,7 +38,8 @@ Plugin 'nvie/vim-flake8'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"Plugin 'szymonmaszke/vimpyter' "Vundle
+Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'szymonmaszke/vimpyter' "Vundle
 "Plugin 'vim-python/python-syntax'
 "Plugin 'davidhalter/jedi-vim'
 "Plugin 'ervandew/supertab'
@@ -109,16 +110,15 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 EOF
-" execfile(activate_this, dict(__file__=activate_this))
 
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-nnoremap <C-H> <C-W>h
+"nnoremap <C-J> <C-W>j
+"nnoremap <C-K> <C-W>k
+"nnoremap <C-L> <C-W>l
+"nnoremap <C-H> <C-W>h
 " Enable folding with the spacebar
 nnoremap <space> za
 
