@@ -39,7 +39,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'szymonmaszke/vimpyter' "Vundle
+"Plugin 'KangOl/vim-pudb'
+"Plugin 'szymonmaszke/vimpyter' "Vundle
 "Plugin 'vim-python/python-syntax'
 "Plugin 'davidhalter/jedi-vim'
 "Plugin 'ervandew/supertab'
@@ -115,6 +116,7 @@ EOF
 nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
+nnoremap <F8> :TogglePudbBreakPoint<CR>
 "nnoremap <C-J> <C-W>j
 "nnoremap <C-K> <C-W>k
 "nnoremap <C-L> <C-W>l
