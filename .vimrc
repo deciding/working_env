@@ -29,7 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'vim-scripts/Conque-GDB'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/nerdtree'
@@ -116,6 +116,7 @@ EOF
 
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <silent> gb :YcmCompleter GoToDefinition<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
