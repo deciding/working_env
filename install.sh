@@ -56,6 +56,7 @@ echo "Installing YCM"
 sudo apt-get install build-essential cmake
 sudo apt-get install python-dev python3-dev
 sudo apt-get install python3.6-dev
+#sudo apt-get install libpython3.6-dev
 git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
 sudo apt-get install -y cmake
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
