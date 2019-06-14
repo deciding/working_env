@@ -71,7 +71,7 @@ vim +PluginInstall +qall
 cp .bashrc ~/.bashrc
 source ~/.bashrc
 
-sudo apt install imagemagick
+sudo apt install -y imagemagick
 git clone https://github.com/stefanhaustein/TerminalImageViewer.git
 (cd TerminalImageViewer/src/main/cpp && make && sudo make install)
 rm -rf TerminalImageViewer
