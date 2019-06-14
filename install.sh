@@ -55,7 +55,9 @@ unzip /usr/src/taglist.zip -d $HOME/.vim # with 'filetype plugin on' in ~/.vimrc
 echo "Installing YCM"
 sudo apt-get install build-essential cmake
 sudo apt-get install python-dev python3-dev
+sudo apt-get install python3.6-dev
 git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
+sudo apt-get install -y cmake
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
 (cd $HOME/.vim/bundle/jedi-vim/ && git submodule update --init)
 #install ConqueGDB
@@ -69,3 +71,7 @@ vim +PluginInstall +qall
 cp .bashrc ~/.bashrc
 source ~/.bashrc
 
+sudo apt install imagemagick
+git clone https://github.com/stefanhaustein/TerminalImageViewer.git
+(cd TerminalImageViewer/src/main/cpp && make && sudo make install)
+rm -rf TerminalImageViewer
