@@ -139,10 +139,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export PYTHONIOENCODING=utf-8
 export PATH="/Users/zhangzining/miniconda3/bin:$PATH"
-source /usr/local/bin/virtualenvwrapper.sh
 alias tensorboard='/Users/zhangzining/miniconda3/bin/tensorboard'
-export LANG="en_US.utf8"
-export LC_ALL="en_US.utf8"
-export LC_CTYPE="en_US.utf8"
+
+export LANG="en_US.UTF8"
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE="en_US.UTF8"
 export PATH=$PATH:$HOME/.local/bin
 export LD_LIBRARY_PATH="/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64"
+source /usr/local/bin/virtualenvwrapper.sh

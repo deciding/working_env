@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin on
+let g:tex_flavor='latex'
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -29,11 +30,17 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'Valloric/YouCompleteMe'
+"if &filetype ==# 'python'
+if expand('%:t') =~ '\.tex'
+    echo expand('%:t') ' will not use ycm plugin'
+    echo expand('%:t') ' will not use syntastic plugin'
+else
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'vim-syntastic/syntastic'
+endif
 "Plugin 'vim-scripts/Conque-GDB'
-Plugin 'tmhedberg/SimpylFold'
+"Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
@@ -52,7 +59,9 @@ Plugin 'sirver/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+
+" filetype plugin indent on    " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -73,8 +82,8 @@ let g:syntastic_quiet_messages = {
         \ "!level":  "errors",
         \ "type":    "style"}
 
-" let g:jedi#completions_command = "<C-N>"
-"let g:SuperTabDefaultCompletionType = "context"
+" let g:jedi#completions_command = '<C-N>'
+"let g:SuperTabDefaultCompletionType = 'context'
 "let g:jedi#popup_on_dot = 0
 "let g:ale_linters = {'python': ['flake8', 'pylint']}
 "let g:ale_linters_ignore = {'python': ['pylint']}
@@ -122,13 +131,14 @@ nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
+inoremap <C-D> <C-O>x
 "nnoremap <F8> :TogglePudbBreakPoint<CR>
 "nnoremap <C-J> <C-W>j
 "nnoremap <C-K> <C-W>k
 "nnoremap <C-L> <C-W>l
 "nnoremap <C-H> <C-W>h
 " Enable folding with the spacebar
-nnoremap <space> za
+" nnoremap <space> za
 
 set exrc
 set secure
@@ -136,7 +146,6 @@ set secure
 set foldmethod=indent
 set foldlevel=99
 
-filetype plugin indent on
 syntax on
 
 syntax enable
@@ -144,14 +153,19 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-filetype indent on
-set autoindent
+
+if expand('%:t') =~ '\.tex'
+    echo expand('%:t') ' will not use autoindent'
+else
+    filetype plugin indent on
+    filetype indent on
+    set autoindent
+endif
 
 set encoding=utf-8
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set termencoding=utf-8
 
-let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
@@ -160,3 +174,5 @@ let g:tex_conceal='abdmg'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+set bs=2
+"let g:ycm_filetype_blacklist = {'tex':1}

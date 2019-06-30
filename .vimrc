@@ -120,6 +120,7 @@ nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
+inoremap <C-D> <C-O>x
 "nnoremap <F8> :TogglePudbBreakPoint<CR>
 "nnoremap <C-J> <C-W>j
 "nnoremap <C-K> <C-W>k
