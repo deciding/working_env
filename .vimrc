@@ -40,6 +40,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tell-k/vim-autopep8'
+Plugin 'sirver/ultisnips'
 "find . -name '*.py' -exec autopep8 --in-place '{}' \;
 "Plugin 'KangOl/vim-pudb'
 "Plugin 'szymonmaszke/vimpyter' "Vundle
@@ -149,3 +150,7 @@ set autoindent
 set encoding=utf-8
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set termencoding=utf-8
+
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'

@@ -1,0 +1,432 @@
+# === import ===
+
+snippet imtf "import tf" bA
+import tensorflow as tf
+endsnippet
+
+snippet imnp "import np" bA
+import numpy as np
+endsnippet
+
+# === tf common ===
+
+snippet tph "tf.placeholder()" wA
+tf.placeholder(
+    ${1:tf.float32},
+    shape=${2:None},
+    name=${3:None}
+)$0
+endsnippet
+
+snippet tgv "tf.get_variable()" wA
+tf.get_variable(
+    ${1:name},
+    shape=${2:None},
+    dtype=${3:None},
+    initializer=${4:None},
+)$0
+endsnippet
+
+snippet ttv "tf.trainable_variables()" wA
+tf.trainable_variables(scope=${1:None})$0
+endsnippet
+
+snippet tconcat "tf.concat()" wA
+tf.concat(
+    ${1:[]},
+    axis=${2:0},
+    name=${3:'concat'}
+)$0
+endsnippet
+
+# map each elem in structure using a function
+snippet tmstrct "tf.nest.map_structure()" wA
+tf.nest.map_structure(
+    ${1:func},
+    ${2:*structure},
+)$0
+endsnippet
+
+# keepdims: keep the dimention of the reduced axis with length 1
+snippet tredmax "tf.reduce_max()" wA
+tf.reduce_max(
+    ${1:input_tensor},
+    axis=${2:None},
+    keepdims=${3:None},
+    name=${4:None},
+)$0
+endsnippet
+
+# tf.sequence_mask([1, 3, 2], 5) # [[True, False, False, False, False],
+                                #  [True, True, True, False, False],
+                                #  [True, True, False, False, False]]
+snippet tseqmask "tf.sequence_mask()" wA
+tf.sequence_mask(
+    ${1:lengths},
+    maxlen=${2:None},
+    dtype=${3:tf.dtypes.bool},
+    name=${4:None}
+)$0
+endsnippet
+
+# === tf initializer ===
+
+snippet truinit "tf.random_uniform_initializer()" wA
+tf.random_uniform_initializer(
+    minval=${1:0},
+    maxval=${2:None},
+    seed=${3:None},
+    dtype=${4:tf.float32},
+)$0
+endsnippet
+
+# uniform or normal dist
+snippet txainit "tf.contrib.layers.xavier_initializer()" wA
+tf.contrib.layers.xavier_initializer(
+    uniform=${1:True},
+    seed=${2:None},
+    dtype=${3:tf.float32},
+)$0
+endsnippet
+
+# === tf.nn ===
+
+# if number of tensors in params >1, we will consider, whether use mod for hop, or div for continuous
+snippet tembdlu "tf.nn.embedding_lookup()" wA
+tf.nn.embedding_lookup(
+    ${1:params},
+    ${2:ids},
+    partition_strategy=${3:'mod'},
+    name=${4:None},
+)$0
+endsnippet
+
+# return (outputs, state),
+# outputs: [batch_size, ts, cell.output_size]
+# state: [batch, cell.state_size]
+# swap_memory: during training, save activations for grad calculation in host mem
+# sequence_length: for 1. extract the last valid state and 2. properly padded outputs
+# time_major: save time of transposing input output
+snippet tdrnn "tf.nn.dynamic_rnn()" wA
+tf.nn.dynamic_rnn(
+    ${1:cell},
+    ${2:inputs},
+    sequence_length=${3:None},
+    initial_state=${4:None},
+    dtype=${5:None},
+    swap_memory=${6:False},
+    time_major=${7:False},
+    scope=${8:None}
+)$0
+endsnippet
+
+# return ( (outputs_fw, outputs_bw), (output_state_fw, output_state_bw) )
+# outputs_fw: [batch_size, ts, cell_fw.output_size]
+snippet tbdrnn "tf.nn.bidirectional_dynamic_rnn()" wA
+tf.nn.bidirectional_dynamic_rnn(
+    ${1:cell_fw},
+    ${2:cell_bw},
+    ${3:inputs},
+    sequence_length=${4:None},
+    initial_state_fw=${5:None},
+    initial_state_bw=${6:None},
+    dtype=${7:None},
+    swap_memory=${8:False},
+    time_major=${9:False},
+    scope=${10:None}
+)$0
+endsnippet
+
+# difference with bidirectional_dynamic_rnn when using mutlirnncell: https://stackoverflow.com/questions/49242266/difference-between-bidirectional-dynamic-rnn-and-stack-bidirectional-dynamic-rnn/52058461#52058461
+snippet tsbdrnn "tf.contrib.rnn.stack_bidirectional_dynamic_rnn()" wA
+tf.contrib.rnn.stack_bidirectional_dynamic_rnn(
+    ${1:cell_fw},
+    ${2:cell_bw},
+    ${3:inputs},
+    sequence_length=${4:None},
+    initial_state_fw=${5:None},
+    initial_state_bw=${6:None},
+    dtype=${7:None},
+    swap_memory=${8:False},
+    time_major=${9:False},
+    scope=${10:None}
+)$0
+endsnippet
+
+# === tf.nn.rnn_cell ===
+
+snippet tdrop "tf.nn.rnn_cell.DropoutWrapper()" wA
+tf.nn.rnn_cell.DropoutWrapper(
+    ${1:cell},
+    input_keep_prob=${2:1.0},
+    output_keep_prob=${3:1.0},
+    state_keep_prob=${4:1.0},
+    dtype=${5:None},
+)$0
+endsnippet
+
+snippet tres "tf.nn.rnn_cell.ResidualWrapper()" wA
+tf.nn.rnn_cell.ResidualWrapper(
+    ${1:cell},
+)$0
+endsnippet
+
+# state_is_tuple: return n rnn cell states as tuple
+snippet tmrnnc "tf.nn.rnn_cell.MultiRNNCell()" wA
+tf.nn.rnn_cell.MultiRNNCell(
+    ${1:[]},
+    state_is_tuple=${2:True},
+)$0
+endsnippet
+
+# === seq2seq ===
+
+# [batch_size, ...] -> [batch_size * multiplier, ...]
+snippet ttileb "tf.contrib.seq2seq.tile_batch()" wA
+tf.contrib.seq2seq.tile_batch(
+    ${1:t},
+    ${2:multiplier},
+    name=${3:None}
+)$0
+endsnippet
+
+# memory_sequence_length: firstly, mask 
+# num_units: project both query and memory
+# normalize: normalize score
+# probability_fn: score -> prob (softmax)
+# score_mask_value: mask score to this value according to memory_sequence_length,  default is -inf
+snippet tbdnatt "tf.contrib.seq2seq.BahdanauAttention()" wA
+tf.contrib.seq2seq.BahdanauAttention(
+    ${1:num_units},
+    ${2:memory},
+    memory_sequence_length=${3:None},
+    normalize=${4:False},
+    probability_fn=${5:None},
+    score_mask_value=${6:None},
+    dtype=${7:None},
+    name=${8:'BahdanauAttention'}
+)$0
+endsnippet
+
+snippet tlngatt "tf.contrib.seq2seq.LuongAttention()" wA
+tf.contrib.seq2seq.LuongAttention(
+    ${1:num_units},
+    ${2:memory},
+    memory_sequence_length=${3:None},
+    scale=${4:False},
+    probability_fn=${5:None},
+    score_mask_value=${6:None},
+    dtype=${7:None},
+    name=${8:'LuongAttention'}
+)$0
+endsnippet
+
+# (input, state) -> (attention/output, next_state)
+# state: (time, cell_state, attention, alignments, alignment_history)
+# input=cell_input_fn(input, state.attention)
+# output=_cell(input, state.cell_state)
+# alignments=attention_mechanism(output, state.alignments)
+# 1.attention=alignments*values
+# 2.attetion=attention_layer(concat(output, attention))
+# return attention/output
+#
+# attention_layer_size means a projection attention_layer
+# attention_layer_size and attention_layer must not be both not-None
+# refs: https://github.com/tensorflow/tensorflow/blob/r1.2/tensorflow/contrib/seq2seq/python/ops/attention_wrapper.py#L731
+snippet tattwrp "tf.contrib.seq2seq.AttentionWrapper()" wA
+tf.contrib.seq2seq.AttentionWrapper(
+    ${1:cell},
+    ${2:attention_mechanism},
+    attention_layer_size=${3:None},
+    alignment_history=${4:False},
+    cell_input_fn=${5:None},
+    output_attention=${6:True},
+    initial_cell_state=${7:None},
+    name=${8:None},
+    attention_layer=${9:None},
+)$0
+endsnippet
+
+# ground truth as input to decoder
+snippet ttrainh "tf.contrib.seq2seq.TrainingHelper()" wA
+tf.contrib.seq2seq.TrainingHelper(
+    ${1:inputs},
+    ${2:sequence_length},
+    time_major=${3:False},
+    name=${4:None}
+)$0
+endsnippet
+
+# initialize(name) -> (finished, first_input, initial_state)
+# step(time, input, state) -> (output, next_state, next_input, finished)
+# wrapper for cell, control where to get input and, when to finish
+snippet tbasdec "tf.contrib.seq2seq.BasicDecoder()" wA
+tf.contrib.seq2seq.BasicDecoder(
+    ${1:cell},
+    ${2:helper},
+    ${3:initial_state},
+    output_layer=${4:None}
+)$0
+endsnippet
+
+# impute_finished: final state and outputs have the correct values and that backprop ignores time steps that were marked as finished.
+# swap_memory: for while loop
+# control the whole outputs and max length
+# return: (final_outputs, final_state, final_sequence_lengths)
+snippet tddec "tf.contrib.seq2seq.dynamic_decode()" wA
+tf.contrib.seq2seq.dynamic_decode(
+    ${1:decoder},
+    output_time_major=${2:False},
+    impute_finished=${3:False},
+    maximum_iterations=${4:None},
+    swap_memory=${5:False},
+    scope=${6:None},
+)$0
+endsnippet
+
+# logits: [batch_size, sequence_length, num_decoder_symbols], dtype float
+# targets: [batch_size, sequence_length], dtype int
+# weights: [batch_size, sequence_length], dtype float, can use sequence_mask
+# below four will reduce dimension
+# softmax_loss_function: not use standard softmax to calculate loss
+snippet tseqloss "tf.contrib.seq2seq.sequence_loss()" wA
+tf.contrib.seq2seq.sequence_loss(
+    ${1:logits},
+    ${2:targets},
+    ${3:weights},
+    average_across_timesteps=${4:True},
+    average_across_batch=${5:True},
+    sum_over_timesteps=${6:False},
+    sum_over_batch=${7:False},
+    softmax_loss_function=${8:None},
+    name=${9:None}
+)$0
+endsnippet
+
+# === tf.keras.layers ===
+
+snippet tDense "tf.keras.layers.Dense()" wA
+tf.keras.layers.Dense(
+    ${1:units},
+    activation=${2:None},
+    use_bias=${3:True},
+    dtype=${4:None},
+    name=${5:None}
+)$0
+endsnippet
+
+# (batch_size, steps, input_dim) -> (batch_size, new_steps, filters)
+# when used as first layer, specify input_shape
+# filters: int
+# kernel_size: int
+# padding: valid, same, causal
+# dilation_rate: accross channel, dilation_rate and strides cannot both !=1
+snippet tConv1D "tf.keras.layers.Conv1D()" wA
+tf.keras.layers.Conv1D(
+    ${1:filters},
+    ${2:kernel_size},
+    strides=${3:1},
+    padding=${4:'valid'},
+    dilation_rate=${5:1},
+    activation=${6:None},
+    use_bias=${7:True},
+    kernel_initializer=${8:'glorot_uniform'},
+    bias_initializer=${9:'zeros'},
+    input_shape=${10:()}
+)$0
+endsnippet
+
+# (samples, rows, cols, channels) -> (samples, new_rows, new_cols, filters)
+# when used as first layer, specify input_shape
+# filters: int
+# kernel_size: int(same for 2 dim) / intlist
+# padding: valid, same
+# dilation_rate: accross channel, dilation_rate and strides cannot both !=1
+# note: filter [filter_height, filter_width, in_channels, out_channels]
+snippet tConv2D "tf.keras.layers.Conv2D()" wA
+tf.keras.layers.Conv2D(
+    ${1:filters},
+    ${2:kernel_size},
+    strides=${3:(1, 1)},
+    padding=${4:'valid'},
+    dilation_rate=${5:(1, 1)},
+    activation=${6:None},
+    use_bias=${7:True},
+    kernel_initializer=${8:'glorot_uniform'},
+    bias_initializer=${9:'zeros'},
+    input_shape=${10:()}
+)$0
+endsnippet
+
+snippet tBNorm "tf.keras.layers.BatchNormalization()" wA
+tf.keras.layers.BatchNormalization(
+    axis=${1:-1},
+    momentum=${2:0.99},
+    epsilon=${3:0.001},
+    center=${4:True},
+    scale=${5:True},
+    beta_initializer=${6:'zeros'},
+    gamma_initializer=${7:'ones'},
+    moving_mean_initializer=${8:'zeros'},
+    moving_variance_initializer=${9:'ones'},
+)$0
+endsnippet
+
+# === tf optimizer ===
+
+snippet toadam "tf.train.AdamOptimizer()" wA
+tf.train.AdamOptimizer(
+    learning_rate=${1:0.001},
+    beta1=${2:0.9},
+    beta2=${3:0.999},
+    epsilon=${4:1e-08},
+    name=${5:'Adam'}
+)$0
+endsnippet
+
+# var_list: list of tf.Varaible
+# gate_gradients: barrier between compute gradient and update gradient, default is GATE_OP, which is to wait all gradients in one op computed before applying them. Also have GATE_NONE, and GATE_GRAPH
+# aggregation_method: how to aggregate gradients, in favour of speed or memory. tf.AggregationMethod, ADD_N, EXPERIMENTAL_TREE, EXPERIMENTAL_ACCUMULATE_N
+# colocate_gradients_with_ops: put the gradient together with ops(in each GPU) and pass to param server, or just move the predictions to param server to calculate gradients
+# grad_loss: save grad for total loss
+# return: (grad, var) list, grad can be None because, loss has no dependency on some var
+snippet tocg "\." irA
+compute_gradients(
+    ${1:loss},
+    var_list=${2:None},
+    gate_gradients=${3:GATE_OP},
+    aggregation_method=${4:None},
+    colocate_gradients_with_ops=${5:False},
+    grad_loss=${6:None}
+)
+endsnippet
+
+snippet toag "\." irA
+apply_gradients(
+    ${1:grads_and_vars},
+    global_step=${2:None},
+    name=${3:None}
+)
+endsnippet
+
+# return (list_clipped, global_norm)
+# list_clipped[i]=t_list[i] * clip_norm / max(global_norm, clip_norm)
+# global_norm = sqrt(sum([l2norm(t)**2 for t in t_list]))
+snippet tclipgn "tf.clip_by_global_norm()" wA
+tf.clip_by_global_norm(
+    ${1:t_list},
+    ${2:clip_norm},
+    use_norm=${3:None},
+    name=${4:None}
+)
+endsnippet
+
+# return t * clip_norm / max(l2norm(t), clip_norm)
+snippet tclipn "tf.clip_by_norm()" wA
+tf.clip_by_norm(
+    ${1:t},
+    ${2:clip_norm},
+    axes=${3:None},
+    name=${4:None}
+)
+endsnippet
