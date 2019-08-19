@@ -83,6 +83,9 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias pap='paplay -s 127.0.0.1:9999'
+alias mem="ps aux --sort -rss | awk -F' ' 'NR>1{SUM+=\$4}END{print SUM, 80}'"
+alias emem="watch -d -n 0.5 \"ps aux --sort -rss | awk -F' ' 'NR>1{SUM+=\\\$4}END{print SUM, 80}'\""
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -133,6 +136,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export PYTHONIOENCODING=utf-8
 source ~/.local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 export LANG="en_US.utf8"
 export LC_ALL="en_US.utf8"
 export LC_CTYPE="en_US.utf8"

@@ -81,6 +81,7 @@ let g:syntastic_quiet_messages = {
 "let g:ale_fix_on_save = 1
 
 au VimEnter *  NERDTree
+autocmd VimEnter * wincmd w
 "au VimEnter *  TlistOpen
 
 " allow toggling between local and default mode

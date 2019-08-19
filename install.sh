@@ -28,6 +28,8 @@ sudo apt-get install locales
 sudo locale-gen en_US.UTF-8
 sudo update-locale
 
+#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+#python3 get-pip.py --force-reinstall
 sudo apt-get install python3-pip
 python3 -m pip install --user --upgrade pip
 pip3 install virtualenv
