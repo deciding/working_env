@@ -67,10 +67,13 @@ filetype plugin indent on    " required
 let g:ycm_autoclose_preview_window_after_completion=1
 let Tlist_Use_Right_Window   = 1
 let g:python_highlight_all = 1
-" let g:syntastic_quiet_messages = { "type": "style" }
+"let g:syntastic_quiet_messages = { "type": "style" }
 let g:syntastic_quiet_messages = {
         \ "!level":  "errors",
         \ "type":    "style"}
+let g:syntastic_python_checkers = ['flake8']
+let g:NERDTreeWinSize = 20
+let g:Tlist_WinWidth = 20
 
 " let g:jedi#completions_command = "<C-N>"
 "let g:SuperTabDefaultCompletionType = "context"
@@ -81,8 +84,8 @@ let g:syntastic_quiet_messages = {
 "let g:ale_fix_on_save = 1
 
 au VimEnter *  NERDTree
-autocmd VimEnter * wincmd w
-"au VimEnter *  TlistOpen
+au VimEnter *  TlistOpen
+autocmd VimEnter * wincmd h
 
 " allow toggling between local and default mode
 function TabToggle()
@@ -119,10 +122,14 @@ EOF
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " nnoremap <silent> gb :YcmCompleter GoToDefinition<CR>
-nnoremap <F6> :NERDTreeToggle<CR>:set invnumber<CR>
+nnoremap <F5> :set invnumber<CR>:NERDTreeToggle<CR>:TlistToggle<CR>
+nnoremap <F6> :NERDTreeToggle<CR>
+nnoremap <F7> :TlistToggle<CR>
 nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
 inoremap <C-D> <C-O>x
+nnoremap <C-M> <C-W>50>
+nnoremap <C-N> <C-W>50<
 "nnoremap <F8> :TogglePudbBreakPoint<CR>
 "nnoremap <C-J> <C-W>j
 "nnoremap <C-K> <C-W>k

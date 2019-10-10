@@ -86,19 +86,22 @@ alias l='ls -CF'
 alias pap='paplay -s 127.0.0.1:9999'
 alias mem="ps aux --sort -rss | awk -F' ' 'NR>1{SUM+=\$4}END{print SUM, 80}'"
 alias emem="watch -d -n 0.5 \"ps aux --sort -rss | awk -F' ' 'NR>1{SUM+=\\\$4}END{print SUM, 80}'\""
+alias egpu="watch -d -n 0.5 nvidia-smi --query-gpu=memory.used,memory.total --format=csv"
+alias edu="du -cBM --max-depth=1 2> >(grep -v 'Permission denied') | sort -n"
+alias dockertmp="du -hsc /var/lib/docker/overlay2/LONGHASHHHHHHH/diff/tmp"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 function ctm(){
-    scp -r $1 zhangzining@10.80.22.29:/home/zhangzining/Documents/work/$2
+    scp -r $1 zining.zhang@10.80.71.52:~/Documents/work/$2
 }
 
 function pctm(){
     while :
     do
-        scp -r $1 zhangzining@10.80.22.29:/home/zhangzining/Documents/work/$2
+        scp -r $1 zining.zhang@10.80.71.52:~/Documents/work/$2
         sleep 10
     done
 }
@@ -108,10 +111,14 @@ function mpctm(){
     do
         for var in "$@"
         do
-            scp -r "$var" zhangzining@10.80.22.29:/home/zhangzining/Documents/work/speaker/tb_log
+            scp -r "$var" zining.zhang@10.80.71.52:~/Documents/work/speaker/tb_log
         done
         sleep 60
     done
+}
+
+function msend(){
+    echo "I am important" | mail -s "Hello ZN" zhangzn710@gmail.com -A $1
 }
 
 # Alias definitions.
@@ -136,7 +143,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export PYTHONIOENCODING=utf-8
 source ~/.local/bin/virtualenvwrapper.sh
-#source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 export LANG="en_US.utf8"
 export LC_ALL="en_US.utf8"
 export LC_CTYPE="en_US.utf8"
