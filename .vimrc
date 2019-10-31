@@ -125,11 +125,15 @@ nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F5> :set invnumber<CR>:NERDTreeToggle<CR>:TlistToggle<CR>
 nnoremap <F6> :NERDTreeToggle<CR>
 nnoremap <F7> :TlistToggle<CR>
-nnoremap <F9> mz:execute TabToggle()<CR>'z
+" nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
 inoremap <C-D> <C-O>x
 nnoremap <C-M> <C-W>50>
 nnoremap <C-N> <C-W>50<
+nnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+nnoremap <F9> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+vnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+vnoremap <F9> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
 "nnoremap <F8> :TogglePudbBreakPoint<CR>
 "nnoremap <C-J> <C-W>j
 "nnoremap <C-K> <C-W>k
