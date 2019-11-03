@@ -64,6 +64,8 @@ sudo apt-get install -y python-dev python3-dev
 git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
 sudo apt-get install -y cmake
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
+wget https://nchc.dl.sourceforge.net/project/vim-taglist/vim-taglist/4.6/taglist_46.zip
+unzip -d $HOME/.vim/ taglist_46.zip
 #(cd $HOME/.vim/bundle/jedi-vim/ && git submodule update --init)
 #install ConqueGDB
 
@@ -77,20 +79,20 @@ cp .bashrc ~/.bashrc
 cp .tmux.conf ~/.tmux.conf
 source ~/.bashrc
 
-#mpi
-wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
-gunzip -c openmpi-4.0.2.tar.gz | tar xf -
-cd openmpi-4.0.2
-./configure --prefix=/usr/local
-sudo make all install
-cd -
-rm -rf openmpi-4.0.2
-rm openmpi-4.0.2.tar.gz
-#horovod
-sudo apt-get install -y g++-4.8
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 1
-HOROVOD_CUDA_INCLUDE=/usr/local/cuda-9.0/targets/x86_64-linux/include/ HOROVOD_CUDA_LIB=/usr/local/cuda-9.0/targets/x86_64-linux/lib/ HOROVOD_CUDA_HOME=/usr/local/cuda-9.0/bin/ HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
-#CUDA_VISIBLE_DEVICES=2,3 mpirun -np 2     -bind-to none -map-by slot     -x LD_LIBRARY_PATH     -x LIBRARY_PATH     -x PYTHONPATH     -x PATH     -x NCCL_DEBUG=INFO     -x NCCL_SOCKET_IFNAME=eth0     -x NCCL_P2P_DISABLE=1     --mca btl_tcp_if_include eth0 --mca oob_tcp_if_include eth0     -mca pml ob1 -mca btl ^openib hostname
+##mpi
+#wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
+#gunzip -c openmpi-4.0.2.tar.gz | tar xf -
+#cd openmpi-4.0.2
+#./configure --prefix=/usr/local
+#sudo make all install
+#cd -
+#rm -rf openmpi-4.0.2
+#rm openmpi-4.0.2.tar.gz
+##horovod
+#sudo apt-get install -y g++-4.8
+#sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 1
+#HOROVOD_CUDA_INCLUDE=/usr/local/cuda-9.0/targets/x86_64-linux/include/ HOROVOD_CUDA_LIB=/usr/local/cuda-9.0/targets/x86_64-linux/lib/ HOROVOD_CUDA_HOME=/usr/local/cuda-9.0/bin/ HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
+##CUDA_VISIBLE_DEVICES=2,3 mpirun -np 2     -bind-to none -map-by slot     -x LD_LIBRARY_PATH     -x LIBRARY_PATH     -x PYTHONPATH     -x PATH     -x NCCL_DEBUG=INFO     -x NCCL_SOCKET_IFNAME=eth0     -x NCCL_P2P_DISABLE=1     --mca btl_tcp_if_include eth0 --mca oob_tcp_if_include eth0     -mca pml ob1 -mca btl ^openib hostname
 
 sudo apt install -y imagemagick
 git clone https://github.com/stefanhaustein/TerminalImageViewer.git
