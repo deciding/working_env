@@ -91,7 +91,7 @@ source ~/.bashrc
 ##horovod
 #sudo apt-get install -y g++-4.8
 #sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 1
-#HOROVOD_CUDA_INCLUDE=/usr/local/cuda-9.0/targets/x86_64-linux/include/ HOROVOD_CUDA_LIB=/usr/local/cuda-9.0/targets/x86_64-linux/lib/ HOROVOD_CUDA_HOME=/usr/local/cuda-9.0/bin/ HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
+#HOROVOD_WITH_MPI=1 HOROVOD_CUDA_INCLUDE=/usr/local/cuda-9.0/targets/x86_64-linux/include/ HOROVOD_CUDA_LIB=/usr/local/cuda-9.0/targets/x86_64-linux/lib/ HOROVOD_CUDA_HOME=/usr/local/cuda-9.0/bin/ HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
 ##CUDA_VISIBLE_DEVICES=2,3 mpirun -np 2     -bind-to none -map-by slot     -x LD_LIBRARY_PATH     -x LIBRARY_PATH     -x PYTHONPATH     -x PATH     -x NCCL_DEBUG=INFO     -x NCCL_SOCKET_IFNAME=eth0     -x NCCL_P2P_DISABLE=1     --mca btl_tcp_if_include eth0 --mca oob_tcp_if_include eth0     -mca pml ob1 -mca btl ^openib hostname
 
 sudo apt install -y imagemagick
