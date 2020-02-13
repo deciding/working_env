@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get install -y git
+sudo apt-get install -y gdb
 sudo apt-get install -y wget
 sudo apt-get install -y unzip
 sudo apt-get install -y xdg-utils 
@@ -78,6 +79,8 @@ vim +PluginInstall +qall
 cp .bashrc ~/.bashrc
 cp .tmux.conf ~/.tmux.conf
 source ~/.bashrc
+
+cp .gdbinit ~/.gdbinit
 
 ##mpi
 #wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
