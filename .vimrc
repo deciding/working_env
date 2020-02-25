@@ -138,6 +138,9 @@ nnoremap cp ct)
 nnoremap cn ct,
 nnoremap cm ct.
 nnoremap ck ct:
+nnoremap <silent> gl :tabn<cr>
+nnoremap <silent> gh :tabp<cr>
+nnoremap <silent> gs :tabs<cr>
 nnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
 nnoremap <F9> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
 vnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
