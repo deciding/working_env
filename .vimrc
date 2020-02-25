@@ -130,6 +130,14 @@ nnoremap <F3> :Autopep8<CR>
 inoremap <C-D> <C-O>x
 nnoremap <C-M> <C-W>50>
 nnoremap <C-N> <C-W>50<
+nnoremap cj ct_
+nnoremap cl ct'
+nnoremap cL ct"
+nnoremap co ct(
+nnoremap cp ct)
+nnoremap cn ct,
+nnoremap cm ct.
+nnoremap ck ct:
 nnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
 nnoremap <F9> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
 vnoremap <F8> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
