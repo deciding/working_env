@@ -1,11 +1,15 @@
 #!/bin/bash
-sudo apt-get update
+apt-get update
+apt-get install -y sudo
 sudo apt-get install -y git
+sudo apt-get install -y vim
 sudo apt-get install -y gdb
 sudo apt-get install -y wget
 sudo apt-get install -y unzip
 sudo apt-get install -y xdg-utils 
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+git config --global user.email "zhangzn710@gmail.com"
+git config --global user.name "deciding"
 
 #sudo apt-get install -y software-properties-common
 #sudo add-apt-repository ppa:jonathonf/python-3.6
@@ -100,4 +104,4 @@ cp .gdbinit ~/.gdbinit
 sudo apt install -y imagemagick
 git clone https://github.com/stefanhaustein/TerminalImageViewer.git
 (cd TerminalImageViewer/src/main/cpp && make && sudo make install)
-rm -rf TerminalImageViewer
+#rm -rf TerminalImageViewer
