@@ -1,8 +1,10 @@
 #!/bin/bash
+#apt-get install -y software-properties-common
+#add-apt-repository ppa:jonathonf/vim
 apt-get update
 apt-get install -y sudo
 sudo apt-get install -y git
-sudo apt-get install -y vim
+#sudo apt-get install -y vim
 sudo apt-get install -y gdb
 sudo apt-get install -y wget
 sudo apt-get install -y unzip
@@ -11,25 +13,23 @@ git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt -
 git config --global user.email "zhangzn710@gmail.com"
 git config --global user.name "deciding"
 
-#sudo apt-get install -y software-properties-common
-#sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo add-apt-repository ppa:jonathonf/vim
+# sudo add-apt-repository --remove ppa:deadsnakes/ppa
 ##if above show apt_pkg not found, use below commands
 ##cd /usr/lib/python3/dist-packages
 ##cp apt_pkg.cpython-35m-x86_64-linux-gnu.so apt_pkg.so
-#sudo apt-get update
-#sudo apt-get install python3.6
+sudo apt-get update
+sudo apt-get install -y python3.6
+sudo apt install -y vim
 
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
+#sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
+#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
 
-#sudo update-alternatives --config python3
-#sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
-
-#sudo add-apt-repository ppa:jonathonf/vim
-#sudo apt update
-#sudo apt install vim
-
+sudo update-alternatives --config python3
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
 
 sudo apt-get install -y locales
 sudo locale-gen en_US.UTF-8
@@ -64,9 +64,10 @@ unzip /usr/src/taglist.zip -d $HOME/.vim # with 'filetype plugin on' in ~/.vimrc
 echo "Installing YCM"
 sudo apt-get install -y build-essential cmake
 sudo apt-get install -y python-dev python3-dev
-#sudo apt-get install python3.6-dev
-#sudo apt-get install libpython3.6-dev
-git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
+sudo apt-get install python3.6-dev
+sudo apt-get install libpython3.6-dev
+#git clone https://github.com/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
+git clone https://github.com.cnpmjs.org/Valloric/YouCompleteMe.git $HOME/.vim/bundle/YouCompleteMe
 sudo apt-get install -y cmake
 (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer)
 wget https://nchc.dl.sourceforge.net/project/vim-taglist/vim-taglist/4.6/taglist_46.zip
@@ -101,7 +102,7 @@ cp .gdbinit ~/.gdbinit
 #HOROVOD_WITH_MPI=1 HOROVOD_CUDA_INCLUDE=/usr/local/cuda-9.0/targets/x86_64-linux/include/ HOROVOD_CUDA_LIB=/usr/local/cuda-9.0/targets/x86_64-linux/lib/ HOROVOD_CUDA_HOME=/usr/local/cuda-9.0/bin/ HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_WITH_TENSORFLOW=1 pip install --no-cache-dir horovod
 ##CUDA_VISIBLE_DEVICES=2,3 mpirun -np 2     -bind-to none -map-by slot     -x LD_LIBRARY_PATH     -x LIBRARY_PATH     -x PYTHONPATH     -x PATH     -x NCCL_DEBUG=INFO     -x NCCL_SOCKET_IFNAME=eth0     -x NCCL_P2P_DISABLE=1     --mca btl_tcp_if_include eth0 --mca oob_tcp_if_include eth0     -mca pml ob1 -mca btl ^openib hostname
 
-sudo apt install -y imagemagick
-git clone https://github.com/stefanhaustein/TerminalImageViewer.git
-(cd TerminalImageViewer/src/main/cpp && make && sudo make install)
+#sudo apt install -y imagemagick
+#git clone https://github.com/stefanhaustein/TerminalImageViewer.git
+#(cd TerminalImageViewer/src/main/cpp && make && sudo make install)
 #rm -rf TerminalImageViewer
