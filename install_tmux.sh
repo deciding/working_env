@@ -11,4 +11,5 @@ sudo make install
 cd -
 sudo rm -rf /usr/local/src/tmux-\*
 sudo mv tmux-${VERSION} /usr/local/src
+sudo apt-get -y install psmisc
 sudo killall -9 tmux
