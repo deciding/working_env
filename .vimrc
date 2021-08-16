@@ -84,7 +84,7 @@ let g:Tlist_WinWidth = 20
 "let g:ale_fix_on_save = 1
 
 au VimEnter *  NERDTree
-au VimEnter *  TlistOpen
+"au VimEnter *  TlistOpen
 autocmd VimEnter * wincmd h
 
 " allow toggling between local and default mode
@@ -104,8 +104,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 

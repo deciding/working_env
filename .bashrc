@@ -93,6 +93,9 @@ alias dockertmp="du -hsc /var/lib/docker/overlay2/LONGHASHHHHHHH/diff/tmp"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias npy="python -c 'import numpy as np;import sys;val=np.load(sys.argv[1], allow_pickle=True);print(val.shape);print(val)'"
+alias h5="python -c $'import h5py\nimport numpy as np\nimport sys\nwith h5py.File(sys.argv[1], \"r\") as f:\n  for key in f.keys():\n    print(key);\n    val=np.array(f[key])
+\n    print(val.shape)\n    print(val)'"
 
 function ctm(){
     scp -r $1 zining.zhang@10.80.71.52:~/Documents/work/$2
@@ -149,3 +152,4 @@ export LC_ALL="en_US.utf8"
 export LC_CTYPE="en_US.utf8"
 export PATH=$PATH:$HOME/.local/bin:/usr/local/src/tmux-2.6:/usr/local/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-9.0/lib64:/usr/local/cuda-9.0/extras/CUPTI/lib64
+# server ssh start
