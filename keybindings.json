@@ -1,0 +1,26 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key":"ctrl+shift+j",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+m",  // you could use     "key": "ctrl+`",  if you wish
+        "command": "workbench.action.togglePanel",
+        "when": "!terminalFocus"
+      },
+      {
+        "key": "ctrl+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+      },
+      {
+        "key": "ctrl+alt+b",
+        "command": "workbench.action.toggleSidebarVisibility",
+      },
+]
