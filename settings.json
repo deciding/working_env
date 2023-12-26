@@ -1,0 +1,5 @@
+// vscode hightlight line
+"workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#552222"
+},
+"editor.renderLineHighlight": "line",
