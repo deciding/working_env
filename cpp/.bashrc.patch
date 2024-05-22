@@ -1,0 +1,2 @@
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/eigen3:/usr/include/eigen3/Eigen/src/Core/
+export LC_ALL="C.utf-8"

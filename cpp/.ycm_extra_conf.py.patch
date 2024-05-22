@@ -1,0 +1,18 @@
+# ~/.vim/pack/plugins/start/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py
+def get_cpp_include_paths():
+    # Get the 'CPLUS_INCLUDE_PATH' environment variable
+    include_path = os.getenv('CPLUS_INCLUDE_PATH', '')
+
+    # Split paths. ':' is used on Unix-like systems; ';' is used on Windows
+    separator = ';' if os.name == 'nt' else ':'
+    paths = include_path.split(separator)
+
+    # Create the list in the format ['-I', 'path1', '-I', 'path2', ...]
+    cpp_paths = []
+    for path in paths:
+        if path:  # Make sure it's not empty
+            cpp_paths.extend(['-I', path])
+
+    return cpp_paths
+
+flags += get_cpp_include_paths()
