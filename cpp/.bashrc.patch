@@ -1,2 +1,6 @@
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/eigen3:/usr/include/eigen3/Eigen/src/Core/
 export LC_ALL="C.utf-8"
+function dash_gdb {
+    tmux new-session -d -s debugger -x "$(tput cols)" -y "$(tput lines)"
+    tmux source ~/.tmux.gdb.conf
+}

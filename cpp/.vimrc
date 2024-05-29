@@ -1,12 +1,22 @@
 " VIM Configuration File
 " Description: created for C/C++ development, but is useful for other things as well
-" Author: Bhaskar Tallamraju
+" Author: Zining Zhang
 " Last updated: July 06 2020
 
 " I like the desert theme the best
 color desert
 " turn syntax highlighting on
 set t_Co=256
+
+let Tlist_Use_Right_Window   = 1
+let g:NERDTreeWinSize = 20
+let g:Tlist_WinWidth = 20
+au VimEnter *  NERDTree
+au VimEnter *  TlistOpen
+autocmd VimEnter * wincmd h
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :TlistToggle<CR>
+nnoremap <F4> :set nu!<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/pack/plugins/start/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 nnoremap gd :YcmCompleter GoToDefinition<CR>
@@ -72,11 +82,11 @@ let python_highlight_all = 1
 let g:clang_user_options="-std=c++0x"
 
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
-let g:DoxygenToolkit_authorName="John Smith  <John@test.com>"
+let g:DoxygenToolkit_authorName="Zining Zhang <zhangzn710@gmail.com>"
 
 " Enhanced keyboard mappings
 " switch between header/source with F4
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " Build gcc, g++ or python code from here <Shift F8>
 autocmd FileType c nnoremap <buffer> <S-F8> :update<bar>!gcc -Werror % && ./a.out<CR>
@@ -157,7 +167,7 @@ function! CompileAndViewAssembly()
     endif
     " Compile the C++ code, replacing % with your current file name
     let include_args = join(map(copy(include_paths), '"-I" . v:val'), ' ')
-    execute '!g++ -g -O0 -o ' . output_file . ' ' . include_args . ' ' . expand('%')
+    execute '!g++ -g -O0 -mavx -o ' . output_file . ' ' . include_args . ' ' . expand('%')
 
     " Generate the assembly code
     execute '!objdump -d ' . output_file . ' > ' . assembly_file

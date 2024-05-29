@@ -7,5 +7,7 @@ wget -P ~ https://git.io/.gdbinit
 #   git clone --depth=1 https://github.com/ycm-core/YouCompleteMe.git
 #   cd YouCompleteMe & git submodule update --init --recursive
 #   python3 install.py --clangd-completer
+#   git clone https://github.com/preservim/nerdtree.git
+#   git clone https://github.com/yegappan/taglist.git
 # apply .bashrc and .ycm_extra_config.py patches
 
