@@ -12,3 +12,6 @@ wget -P ~ https://git.io/.gdbinit
 #   git clone https://github.com/yegappan/taglist.git
 # apply .bashrc and .ycm_extra_config.py patches
 
+# sudo apt install libeigen3-dev
+
+
