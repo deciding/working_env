@@ -8,6 +8,7 @@ wget -P ~ https://git.io/.gdbinit
 #   cd YouCompleteMe & git submodule update --init --recursive
 #   python3 install.py --clangd-completer
 #   git clone https://github.com/preservim/nerdtree.git
+#   sudo apt install universal-ctags
 #   git clone https://github.com/yegappan/taglist.git
 # apply .bashrc and .ycm_extra_config.py patches
 
