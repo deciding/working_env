@@ -115,6 +115,9 @@ let g:lightline = {
 au VimEnter *  NERDTree
 au VimEnter *  TagbarToggle
 autocmd VimEnter * wincmd l
+au TabNew *  NERDTree
+au TabNew *  TagbarToggle
+autocmd TabNew * wincmd l
 
 " allow toggling between local and default mode
 function TabToggle()
@@ -151,9 +154,9 @@ EOF
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <silent> gb :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " nnoremap <silent> gb :YcmCompleter GoToDefinition<CR>
-nnoremap <F5> :set invnumber<CR>:NERDTreeToggle<CR>:TlistToggle<CR>
+nnoremap <F5> :set invnumber<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>
 nnoremap <F6> :NERDTreeToggle<CR>
-nnoremap <F7> :TlistToggle<CR>
+nnoremap <F7> :TagbarToggle<CR>
 " nnoremap <F9> mz:execute TabToggle()<CR>'z
 nnoremap <F3> :Autopep8<CR>
 inoremap <C-D> <C-O>x
