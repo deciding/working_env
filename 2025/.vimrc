@@ -2,14 +2,17 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin on
 
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"" set the runtime path to include Vundle and initialize
+""set rtp+=~/.vim/bundle/Vundle.vim
+""call vundle#begin()
+"" alternatively, pass a path where Vundle should install plugins
+""call vundle#begin('~/some/path/here')
 
 "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
+" sudo apt install universal-ctags
+" or conda install -c conda-forge ctags
+
 
 
 " let Vundle manage Vundle, required
