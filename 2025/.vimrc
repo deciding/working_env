@@ -12,6 +12,7 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')
 " sudo apt install universal-ctags
 " or conda install -c conda-forge ctags
+" pip install flake8
 
 
 
